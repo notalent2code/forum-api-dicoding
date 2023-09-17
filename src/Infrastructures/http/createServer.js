@@ -1,15 +1,54 @@
 const Hapi = require('@hapi/hapi');
+const Jwt = require('@hapi/jwt');
+
+const config = require('../../../config/env');
+const constants = require('../../Commons/constants');
 const ClientError = require('../../Commons/exceptions/ClientError');
 const DomainErrorTranslator = require('../../Commons/exceptions/DomainErrorTranslator');
 const users = require('../../Interfaces/http/api/users');
 const authentications = require('../../Interfaces/http/api/authentications');
+const threads = require('../../Interfaces/http/api/threads');
 
 const createServer = async (container) => {
   const server = Hapi.server({
-    host: process.env.HOST,
-    port: process.env.PORT,
+    host: config.server.host,
+    port: config.server.port,
   });
 
+  server.route([
+    {
+      method: 'GET',
+      path: '/',
+      handler: (req, h) =>
+        h.response({
+          status: 'success',
+          message: 'Forum API - Dicoding Submission',
+        }).code(200),
+    },
+  ]);
+
+  // external plugins
+  await server.register([{ plugin: Jwt }]);
+
+  // external plugins config
+  server.auth.strategy(constants.idUsernameAuthStrategy, 'jwt', {
+    keys: config.jwt.accessTokenKey,
+    verify: {
+      aud: false,
+      iss: false,
+      sub: false,
+      maxAgeSec: config.jwt.accessTokenAge,
+    },
+    validate: (artifacts) => ({
+      isValid: true,
+      credentials: {
+        id: artifacts.decoded.payload.id,
+        username: artifacts.decoded.payload.username,
+      },
+    }),
+  });
+
+  // server plugins
   await server.register([
     {
       plugin: users,
@@ -19,9 +58,13 @@ const createServer = async (container) => {
       plugin: authentications,
       options: { container },
     },
+    {
+      plugin: threads,
+      options: { container },
+    },
   ]);
 
-  server.ext('onPreResponse', (request, h) => {
+  server.ext('onPreResponse', async (request, h) => {
     // mendapatkan konteks response dari request
     const { response } = request;
 
@@ -48,6 +91,10 @@ const createServer = async (container) => {
       const newResponse = h.response({
         status: 'error',
         message: 'terjadi kegagalan pada server kami',
+        error: {
+          name: response.name,
+          message: response.message,
+        },
       });
       newResponse.code(500);
       return newResponse;
