@@ -8,10 +8,13 @@ describe('SoftDeleteCommentUseCase', () => {
     const mockThreadCommentsRepo = new ThreadCommentsRepository();
     const mockThreadsRepo = new ThreadsRepository();
 
-    mockThreadCommentsRepo.softDeleteCommentById = jest
+    mockThreadsRepo.verifyThread = jest
       .fn()
       .mockImplementation(() => Promise.resolve());
-    mockThreadsRepo.verifyThread = jest
+    mockThreadCommentsRepo.verifyCommentAccess = jest
+      .fn()
+      .mockImplementation(() => Promise.resolve());
+    mockThreadCommentsRepo.softDeleteCommentById = jest
       .fn()
       .mockImplementation(() => Promise.resolve());
 
@@ -23,9 +26,12 @@ describe('SoftDeleteCommentUseCase', () => {
     await usecase.execute('thread-123', 'comment-123', 'user-123');
 
     expect(mockThreadsRepo.verifyThread).toBeCalledWith('thread-123');
-    expect(mockThreadCommentsRepo.softDeleteCommentById).toBeCalledWith(
+    expect(mockThreadCommentsRepo.verifyCommentAccess).toBeCalledWith(
       'comment-123',
       'user-123'
+    );
+    expect(mockThreadCommentsRepo.softDeleteCommentById).toBeCalledWith(
+      'comment-123'
     );
   });
 });
