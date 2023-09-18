@@ -21,7 +21,7 @@ describe('ThreadCommentRepliesRepositoryPostgres', () => {
   };
   const dummyUser2 = {
     id: 'user-xyz',
-    username: 'fulan',
+    username: 'koseki_biboo',
   };
   const dummyThread = {
     id: 'thread-123',

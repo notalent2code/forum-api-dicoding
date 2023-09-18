@@ -45,7 +45,7 @@ class LoginUserUseCase {
       newAuthentication.refreshToken
     );
 
-    return newAuthenticat;
+    return newAuthentication;
   }
 }
 

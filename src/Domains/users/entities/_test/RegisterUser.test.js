@@ -7,7 +7,6 @@ describe('a RegisterUser entities', () => {
       password: 'abc',
     };
 
-    ion and Assert
     expect(() => new RegisterUser(payload)).toThrowError(
       'REGISTER_USER.NOT_CONTAIN_NEEDED_PROPERTY'
     );
@@ -20,7 +19,6 @@ describe('a RegisterUser entities', () => {
       password: 'abc',
     };
 
-    ion and Assert
     expect(() => new RegisterUser(payload)).toThrowError(
       'REGISTER_USER.NOT_MEET_DATA_TYPE_SPECIFICATION'
     );
@@ -33,7 +31,6 @@ describe('a RegisterUser entities', () => {
       password: 'abc',
     };
 
-    ion and Assert
     expect(() => new RegisterUser(payload)).toThrowError(
       'REGISTER_USER.USERNAME_LIMIT_CHAR'
     );
@@ -46,7 +43,6 @@ describe('a RegisterUser entities', () => {
       password: 'abc',
     };
 
-    ion and Assert
     expect(() => new RegisterUser(payload)).toThrowError(
       'REGISTER_USER.USERNAME_CONTAIN_RESTRICTED_CHARACTER'
     );
@@ -59,10 +55,8 @@ describe('a RegisterUser entities', () => {
       password: 'abc',
     };
 
-    ion
     const { username, fullname, password } = new RegisterUser(payload);
 
-    
     expect(username).toEqual(payload.username);
     expect(fullname).toEqual(payload.fullname);
     expect(password).toEqual(payload.password);

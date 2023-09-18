@@ -28,7 +28,7 @@ describe('/threads endpoint', () => {
   };
   const dummyUser2 = {
     id: 'user-xyz',
-    username: 'fulan',
+    username: 'koseki_biboo',
   };
 
   describe('when POST /threads', () => {

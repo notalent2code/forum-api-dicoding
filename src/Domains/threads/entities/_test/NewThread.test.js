@@ -6,7 +6,6 @@ describe('a NewThread entity', () => {
       title: 'example title',
     };
 
-    ion and Assert
     expect(() => new NewThread(payload)).toThrowError(
       'NEW_THREAD.NOT_CONTAIN_NEEDED_PROPERTY'
     );
@@ -18,7 +17,6 @@ describe('a NewThread entity', () => {
       body: 123,
     };
 
-    ion and Assert
     expect(() => new NewThread(payload)).toThrowError(
       'NEW_THREAD.NOT_MEET_DATA_TYPE_SPECIFICATION'
     );
@@ -30,10 +28,8 @@ describe('a NewThread entity', () => {
       body: 'A thread body',
     };
 
-    ion
     const newThread = new NewThread(payload);
 
-    
     expect(newThread.title).toStrictEqual(payload.title);
     expect(newThread.body).toStrictEqual(payload.body);
   });

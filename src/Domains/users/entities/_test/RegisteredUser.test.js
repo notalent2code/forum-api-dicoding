@@ -7,7 +7,6 @@ describe('a RegisteredUser entities', () => {
       fullname: 'Dicoding Indonesia',
     };
 
-    ion and Assert
     expect(() => new RegisteredUser(payload)).toThrowError(
       'REGISTERED_USER.NOT_CONTAIN_NEEDED_PROPERTY'
     );
@@ -20,7 +19,6 @@ describe('a RegisteredUser entities', () => {
       fullname: {},
     };
 
-    ion and Assert
     expect(() => new RegisteredUser(payload)).toThrowError(
       'REGISTERED_USER.NOT_MEET_DATA_TYPE_SPECIFICATION'
     );
@@ -33,10 +31,8 @@ describe('a RegisteredUser entities', () => {
       fullname: 'Dicoding Indonesia',
     };
 
-    ion
     const registeredUser = new RegisteredUser(payload);
 
-    
     expect(registeredUser.id).toEqual(payload.id);
     expect(registeredUser.username).toEqual(payload.username);
     expect(registeredUser.fullname).toEqual(payload.fullname);

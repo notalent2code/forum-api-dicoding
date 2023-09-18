@@ -8,12 +8,10 @@ describe('BcryptEncryptionHelper', () => {
       const spyHash = jest.spyOn(bcrypt, 'hash');
       const bcryptEncryptionHelper = new BcryptEncryptionHelper(bcrypt);
 
-      ion
       const encryptedPassword = await bcryptEncryptionHelper.hash(
         'plain_password'
       );
 
-      
       expect(typeof encryptedPassword).toEqual('string');
       expect(encryptedPassword).not.toEqual('plain_password');
       expect(spyHash).toBeCalledWith('plain_password', 10);
@@ -24,7 +22,6 @@ describe('BcryptEncryptionHelper', () => {
     it('should throw AuthenticationError if password not match', async () => {
       const bcryptEncryptionHelper = new BcryptEncryptionHelper(bcrypt);
 
-       & Assert
       await expect(
         bcryptEncryptionHelper.comparePassword(
           'plain_password',
@@ -40,7 +37,6 @@ describe('BcryptEncryptionHelper', () => {
         plainPassword
       );
 
-       & Assert
       await expect(
         bcryptEncryptionHelper.comparePassword(plainPassword, encryptedPassword)
       ).resolves.not.toThrow(AuthenticationError);

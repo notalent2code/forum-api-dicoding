@@ -4,7 +4,6 @@ describe('UserRepository interface', () => {
   it('should throw error when invoke abstract behavior', async () => {
     const userRepository = new UserRepository();
 
-    ion and Assert
     await expect(userRepository.addUser({})).rejects.toThrowError(
       'USER_REPOSITORY.METHOD_NOT_IMPLEMENTED'
     );
