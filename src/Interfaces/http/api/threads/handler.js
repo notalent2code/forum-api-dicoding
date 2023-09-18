@@ -1,7 +1,3 @@
-/* eslint-disable no-unused-vars */
-const Hapi = require('@hapi/hapi');
-const { Container } = require('instances-container');
-
 const AddThreadsUseCase = require('../../../../Applications/use_case/threads/AddThreadUseCase');
 const GetThreadDetailsUseCase = require('../../../../Applications/use_case/threads/GetThreadDetailsUseCase');
 
@@ -12,36 +8,15 @@ const AddReplyToCommentUseCase = require('../../../../Applications/use_case/thre
 const SoftDeleteReplyUseCase = require('../../../../Applications/use_case/threads/comments/replies/SoftDeleteReplyUseCase');
 const LikeOrDislikeCommentUsecase = require('../../../../Applications/use_case/threads/comments/LikeOrDislikeCommentUseCase');
 
-/**
- * Handler for "/threads" endpoint routes.
- *
- * Every handler method are not bind. Use arrow function to prevent undefined `this`
- */
 class ThreadsHandler {
-  /**
-   * @param {Container} container
-   */
   constructor(container) {
-    this.#container = container;
+    this._container = container;
   }
 
-  #container;
-
-  /**
-   * Handler for `POST /threads`.
-   *
-   * @param {Hapi.Request} req
-   * @param {Hapi.ResponseToolkit} h
-   *
-   * @return {Promise<Hapi.ResponseObject>}
-   */
   async postThread(req, h) {
     const { id: userId } = req.auth.credentials;
 
-    /**
-     * @type {AddThreadsUseCase}
-     */
-    const addThreadsUseCase = this.#container.getInstance(
+    const addThreadsUseCase = this._container.getInstance(
       AddThreadsUseCase.name
     );
 
@@ -56,21 +31,10 @@ class ThreadsHandler {
     return response;
   }
 
-  /**
-   * Handler for `GET /threads/{threadId}`.
-   *
-   * @param {Hapi.Request} req
-   * @param {Hapi.ResponseToolkit} h
-   *
-   * @return {Promise<Hapi.ResponseObject>}
-   */
   async getThreadDetails(req, h) {
     const { threadId } = req.params;
 
-    /**
-     * @type {GetThreadDetailsUseCase}
-     */
-    const getThreadDetails = this.#container.getInstance(
+    const getThreadDetails = this._container.getInstance(
       GetThreadDetailsUseCase.name
     );
 
@@ -82,22 +46,11 @@ class ThreadsHandler {
     };
   }
 
-  /**
-   * Handler for `POST /threads/{threadId}/comments`.
-   *
-   * @param {Hapi.Request} req
-   * @param {Hapi.ResponseToolkit} h
-   *
-   * @return {Promise<Hapi.ResponseObject>}
-   */
   async postComment(req, h) {
     const { id: userId } = req.auth.credentials;
     const { threadId } = req.params;
 
-    /**
-     * @type {AddCommentToThreadUseCase}
-     */
-    const addCommentToThreadUseCase = this.#container.getInstance(
+    const addCommentToThreadUseCase = this._container.getInstance(
       AddCommentToThreadUseCase.name
     );
 
@@ -116,22 +69,11 @@ class ThreadsHandler {
     return response;
   }
 
-  /**
-   * Handler for `DELETE /threads/{threadId}/comments/{commentId}`.
-   *
-   * @param {Hapi.Request} req
-   * @param {Hapi.ResponseToolkit} h
-   *
-   * @return {Promise<Hapi.ResponseObject>}
-   */
   async deleteComment(req, h) {
     const { id: userId } = req.auth.credentials;
     const { threadId, commentId } = req.params;
 
-    /**
-     * @type {SoftDeleteCommentUseCase}
-     */
-    const softDeleteCommentUseCase = this.#container.getInstance(
+    const softDeleteCommentUseCase = this._container.getInstance(
       SoftDeleteCommentUseCase.name
     );
 
@@ -140,22 +82,11 @@ class ThreadsHandler {
     return { status: 'success' };
   }
 
-  /**
-   * Handler for `PUT /threads/{threadId}/comments/{commentId}/likes`.
-   *
-   * @param {Hapi.Request} req
-   * @param {Hapi.ResponseToolkit} h
-   *
-   * @return {Promise<Hapi.ResponseObject>}
-   */
   async likeOrDislikeComment(req, h) {
     const { id: userId } = req.auth.credentials;
     const { threadId, commentId } = req.params;
 
-    /**
-     * @type {LikeOrDislikeCommentUsecase}
-     */
-    const likeOrDislikeCommentUsecase = this.#container.getInstance(
+    const likeOrDislikeCommentUsecase = this._container.getInstance(
       LikeOrDislikeCommentUsecase.name
     );
 
@@ -164,22 +95,11 @@ class ThreadsHandler {
     return { status: 'success' };
   }
 
-  /**
-   * Handler for `POST /threads/{threadId}/comments/{commentId}/replies`.
-   *
-   * @param {Hapi.Request} req
-   * @param {Hapi.ResponseToolkit} h
-   *
-   * @return {Promise<Hapi.ResponseObject>}
-   */
   async postReply(req, h) {
     const { id: userId } = req.auth.credentials;
     const { threadId, commentId } = req.params;
 
-    /**
-     * @type {AddReplyToCommentUseCase}
-     */
-    const addReplyToCommentUseCase = this.#container.getInstance(
+    const addReplyToCommentUseCase = this._container.getInstance(
       AddReplyToCommentUseCase.name
     );
 
@@ -199,22 +119,11 @@ class ThreadsHandler {
     return response;
   }
 
-  /**
-   * Handler for `DELETE /threads/{threadId}/comments/{commentId}/replies/{replyId}`.
-   *
-   * @param {Hapi.Request} req
-   * @param {Hapi.ResponseToolkit} h
-   *
-   * @return {Promise<Hapi.ResponseObject>}
-   */
   async deleteReply(req, h) {
     const { id: userId } = req.auth.credentials;
     const { threadId, commentId, replyId } = req.params;
 
-    /**
-     * @type {SoftDeleteReplyUseCase}
-     */
-    const softDeleteReplyUseCase = this.#container.getInstance(
+    const softDeleteReplyUseCase = this._container.getInstance(
       SoftDeleteReplyUseCase.name
     );
 

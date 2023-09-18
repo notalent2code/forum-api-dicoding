@@ -1,13 +1,5 @@
-/* eslint-disable no-unused-vars */
-const Hapi = require('@hapi/hapi');
-
 const Constants = require('../../../../Commons/constants');
-const ThreadsHandler = require('./handler');
 
-/**
- * @param {ThreadsHandler} handler
- * @return {Hapi.ServerRoute[]}
- */
 const routes = (handler) => [
   {
     method: 'POST',

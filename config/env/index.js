@@ -1,6 +1,4 @@
-/**
- * Environment configuration file.
- */
+// Environment variables
 module.exports = {
   server: {
     host: process.env.HOST,

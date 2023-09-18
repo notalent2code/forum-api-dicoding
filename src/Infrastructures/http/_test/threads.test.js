@@ -809,7 +809,7 @@ describe('/threads endpoint', () => {
 
       await ThreadsTableTestHelper.addThread({});
       await ThreadCommentsTableTestHelper.addCommentToThread({});
-      await ThreadCommentRepliesTableTestHelper.addReplyToComment({}); // reply-123 on comment-123
+      await ThreadCommentRepliesTableTestHelper.addReplyToComment({});
 
       const response = await server.inject({
         method: 'DELETE',
