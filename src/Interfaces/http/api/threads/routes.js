@@ -1,48 +1,16 @@
-const Constants = require('../../../../Commons/constants');
+const constants = require('../../../../Commons/constants');
 
 const routes = (handler) => [
   {
     method: 'POST',
     path: '/threads',
     handler: (req, h) => handler.postThread(req, h),
-    options: { auth: Constants.idUsernameAuthStrategy },
+    options: { auth: constants.strategyName },
   },
   {
     method: 'GET',
     path: '/threads/{threadId}',
     handler: (req, h) => handler.getThreadDetails(req, h),
-  },
-
-  {
-    method: 'POST',
-    path: '/threads/{threadId}/comments',
-    handler: (req, h) => handler.postComment(req, h),
-    options: { auth: Constants.idUsernameAuthStrategy },
-  },
-  {
-    method: 'DELETE',
-    path: '/threads/{threadId}/comments/{commentId}',
-    handler: (req, h) => handler.deleteComment(req, h),
-    options: { auth: Constants.idUsernameAuthStrategy },
-  },
-  {
-    method: 'PUT',
-    path: '/threads/{threadId}/comments/{commentId}/likes',
-    handler: (req, h) => handler.likeOrDislikeComment(req, h),
-    options: { auth: Constants.idUsernameAuthStrategy },
-  },
-
-  {
-    method: 'POST',
-    path: '/threads/{threadId}/comments/{commentId}/replies',
-    handler: (req, h) => handler.postReply(req, h),
-    options: { auth: Constants.idUsernameAuthStrategy },
-  },
-  {
-    method: 'DELETE',
-    path: '/threads/{threadId}/comments/{commentId}/replies/{replyId}',
-    handler: (req, h) => handler.deleteReply(req, h),
-    options: { auth: Constants.idUsernameAuthStrategy },
   },
 ];
 
