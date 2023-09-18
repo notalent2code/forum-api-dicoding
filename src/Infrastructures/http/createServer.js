@@ -8,6 +8,9 @@ const DomainErrorTranslator = require('../../Commons/exceptions/DomainErrorTrans
 const users = require('../../Interfaces/http/api/users');
 const authentications = require('../../Interfaces/http/api/authentications');
 const threads = require('../../Interfaces/http/api/threads');
+const comments = require('../../Interfaces/http/api/comments');
+const replies = require('../../Interfaces/http/api/replies');
+const likes = require('../../Interfaces/http/api/likes');
 
 const createServer = async (container) => {
   const server = Hapi.server({
@@ -20,10 +23,12 @@ const createServer = async (container) => {
       method: 'GET',
       path: '/',
       handler: (req, h) =>
-        h.response({
-          status: 'success',
-          message: 'Forum API - Dicoding Submission',
-        }).code(200),
+        h
+          .response({
+            status: 'success',
+            message: 'Forum API - Dicoding Submission',
+          })
+          .code(200),
     },
   ]);
 
@@ -31,7 +36,7 @@ const createServer = async (container) => {
   await server.register([{ plugin: Jwt }]);
 
   // external plugins config
-  server.auth.strategy(constants.idUsernameAuthStrategy, 'jwt', {
+  server.auth.strategy(constants.strategyName, 'jwt', {
     keys: config.jwt.accessTokenKey,
     verify: {
       aud: false,
@@ -60,6 +65,18 @@ const createServer = async (container) => {
     },
     {
       plugin: threads,
+      options: { container },
+    },
+    {
+      plugin: comments,
+      options: { container },
+    },
+    {
+      plugin: replies,
+      options: { container },
+    },
+    {
+      plugin: likes,
       options: { container },
     },
   ]);
