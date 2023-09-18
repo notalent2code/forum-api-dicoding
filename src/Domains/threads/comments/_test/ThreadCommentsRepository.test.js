@@ -13,7 +13,7 @@ describe('ThreadCommentsRepository', () => {
     ).rejects.toThrowError('THREAD_COMMENTS_REPOSITORY.METHOD_NOT_IMPLEMENTED');
 
     await expect(
-      threadCommentsRepo.softDeleteCommentById('', '')
+      threadCommentsRepo.softDeleteCommentById('')
     ).rejects.toThrowError('THREAD_COMMENTS_REPOSITORY.METHOD_NOT_IMPLEMENTED');
 
     await expect(

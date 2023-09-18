@@ -43,9 +43,7 @@ class ThreadCommentsRepositoryPostgres extends ThreadCommentsRepository {
       );
   }
 
-  async softDeleteCommentById(commentId, userId) {
-    await this.verifyCommentAccess(commentId, userId);
-
+  async softDeleteCommentById(commentId) {
     const query = {
       text: `
         UPDATE thread_comments SET is_deleted = TRUE
