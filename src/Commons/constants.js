@@ -1,3 +1,3 @@
 module.exports = {
-  idUsernameAuthStrategy: 'idWithUsername-auth-strategy',
+  strategyName: 'forum_api_jwt',
 };
