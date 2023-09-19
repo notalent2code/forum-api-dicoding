@@ -157,6 +157,7 @@ describe('ThreadCommentsRepositoryPostgres', () => {
       expect(comment.username).toStrictEqual(dummyUser.username);
       expect(comment.content).toStrictEqual('A comment');
       expect(comment.date.getDate()).toStrictEqual(new Date().getDate());
+      expect(comment.likeCount).toStrictEqual(0);
     });
 
     it('should return array of comments with custom content if comment is soft deleted', async () => {
@@ -179,10 +180,14 @@ describe('ThreadCommentsRepositoryPostgres', () => {
         dummyThread.id
       );
 
+      console.log('comment', comment);
+      console.log('deletedComment', deletedComment);
+
       expect(comment.id).toStrictEqual('comment-123');
       expect(comment.username).toStrictEqual(dummyUser.username);
       expect(comment.content).toStrictEqual('A comment');
       expect(comment.date.getDate()).toStrictEqual(new Date().getDate());
+      expect(comment.likeCount).toStrictEqual(0);
 
       expect(deletedComment.id).toStrictEqual('comment-xyz');
       expect(deletedComment.username).toStrictEqual(dummyUser2.username);
@@ -190,6 +195,7 @@ describe('ThreadCommentsRepositoryPostgres', () => {
         '**komentar telah dihapus**'
       );
       expect(deletedComment.date.getDate()).toStrictEqual(new Date().getDate());
+      expect(deletedComment.likeCount).toStrictEqual(0);
     });
   });
 
