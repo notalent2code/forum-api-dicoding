@@ -41,7 +41,7 @@ describe('ThreadCommentsRepositoryPostgres', () => {
   });
 
   describe('addCommentToThread method', () => {
-    it('should presist comment and return added comment correctly', async () => {
+    it('should persist comment and return added comment correctly', async () => {
       const newComment = new NewComment({ content: 'A comment' });
       const fakeIdGen = () => '123';
 

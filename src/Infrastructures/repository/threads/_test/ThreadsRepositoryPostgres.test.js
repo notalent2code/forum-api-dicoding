@@ -17,7 +17,7 @@ describe('ThreadsRepositoryPostgres', () => {
   });
 
   describe('addThread method', () => {
-    it('should presist thread and return added thread correctly', async () => {
+    it('should persist thread and return added thread correctly', async () => {
       const newThread = new NewThread({
         title: 'A thread',
         body: 'A thread body',
@@ -27,7 +27,7 @@ describe('ThreadsRepositoryPostgres', () => {
 
       const threadsRepoPostgres = new ThreadsRepositoryPostgres(
         pool,
-        fakeIdGen,
+        fakeIdGen
       );
 
       await threadsRepoPostgres.addThread(newThread, 'user-123');
@@ -47,12 +47,12 @@ describe('ThreadsRepositoryPostgres', () => {
 
       const threadsRepoPostgres = new ThreadsRepositoryPostgres(
         pool,
-        fakeIdGen,
+        fakeIdGen
       );
 
       const addedThread = await threadsRepoPostgres.addThread(
         newThread,
-        'user-123',
+        'user-123'
       );
 
       expect(addedThread).toStrictEqual(
@@ -60,7 +60,7 @@ describe('ThreadsRepositoryPostgres', () => {
           id: 'thread-123',
           title: newThread.title,
           owner: 'user-123',
-        }),
+        })
       );
     });
   });
@@ -70,7 +70,7 @@ describe('ThreadsRepositoryPostgres', () => {
       const repoPostgres = new ThreadsRepositoryPostgres(pool, {});
 
       await expect(
-        repoPostgres.getThreadById('thread-123'),
+        repoPostgres.getThreadById('thread-123')
       ).rejects.toThrowError(NotFoundError);
     });
 
@@ -103,7 +103,7 @@ describe('ThreadsRepositoryPostgres', () => {
       const repoPostgres = new ThreadsRepositoryPostgres(pool, {});
 
       await expect(
-        repoPostgres.verifyThread('thread-123'),
+        repoPostgres.verifyThread('thread-123')
       ).rejects.toThrowError(NotFoundError);
     });
 
@@ -117,7 +117,7 @@ describe('ThreadsRepositoryPostgres', () => {
       const repoPostgre = new ThreadsRepositoryPostgres(pool, {});
 
       await expect(
-        repoPostgre.verifyThread('thread-123'),
+        repoPostgre.verifyThread('thread-123')
       ).resolves.not.toThrowError(NotFoundError);
     });
   });
