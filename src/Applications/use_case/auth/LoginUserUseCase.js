@@ -18,23 +18,21 @@ class LoginUserUseCase {
     const { username, password } = new UserLogin(useCasePayload);
 
     const encryptedPassword = await this._userRepository.getPasswordByUsername(
-      username
+      username,
     );
 
     await this._passwordHash.comparePassword(password, encryptedPassword);
 
     const id = await this._userRepository.getIdByUsername(username);
 
-    const accessToken =
-      await this._authenticationTokenManager.createAccessToken({
-        username,
-        id,
-      });
-    const refreshToken =
-      await this._authenticationTokenManager.createRefreshToken({
-        username,
-        id,
-      });
+    const accessToken = await this._authenticationTokenManager.createAccessToken({
+      username,
+      id,
+    });
+    const refreshToken = await this._authenticationTokenManager.createRefreshToken({
+      username,
+      id,
+    });
 
     const newAuthentication = new NewAuthentication({
       accessToken,
@@ -42,7 +40,7 @@ class LoginUserUseCase {
     });
 
     await this._authenticationRepository.addToken(
-      newAuthentication.refreshToken
+      newAuthentication.refreshToken,
     );
 
     return newAuthentication;

@@ -9,17 +9,19 @@ class Thread {
     this.username = payload.username;
   }
 
-  _verifyPayload({ id, title, body, date, username }) {
+  _verifyPayload({
+    id, title, body, date, username,
+  }) {
     if (!id || !title || !body || !date || !username) {
       throw new Error('THREAD.NOT_CONTAIN_NEEDED_PROPERTY');
     }
 
     if (
-      typeof id !== 'string' ||
-      typeof title !== 'string' ||
-      typeof body !== 'string' ||
-      !(date instanceof Date) ||
-      typeof username !== 'string'
+      typeof id !== 'string'
+      || typeof title !== 'string'
+      || typeof body !== 'string'
+      || !(date instanceof Date)
+      || typeof username !== 'string'
     ) {
       throw new Error('THREAD.NOT_MEET_DATA_TYPE_SPECIFICATION');
     }

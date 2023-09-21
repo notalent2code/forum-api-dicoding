@@ -5,7 +5,7 @@ describe('a NewReply entity', () => {
     const payload = {};
 
     expect(() => new NewReply(payload)).toThrowError(
-      'NEW_REPLY.NOT_CONTAIN_NEEDED_PROPERTY'
+      'NEW_REPLY.NOT_CONTAIN_NEEDED_PROPERTY',
     );
   });
 
@@ -15,7 +15,7 @@ describe('a NewReply entity', () => {
     };
 
     expect(() => new NewReply(payload)).toThrowError(
-      'NEW_REPLY.NOT_MEET_DATA_TYPE_SPECIFICATION'
+      'NEW_REPLY.NOT_MEET_DATA_TYPE_SPECIFICATION',
     );
   });
 

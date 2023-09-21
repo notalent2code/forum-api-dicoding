@@ -10,7 +10,7 @@ class LikesHandler {
     const { threadId, commentId } = req.params;
 
     const likeOrDislikeCommentUsecase = this._container.getInstance(
-      LikeOrDislikeCommentUsecase.name
+      LikeOrDislikeCommentUsecase.name,
     );
 
     await likeOrDislikeCommentUsecase.execute(threadId, commentId, userId);

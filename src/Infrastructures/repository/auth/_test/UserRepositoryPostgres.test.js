@@ -23,7 +23,7 @@ describe('UserRepositoryPostgres', () => {
       const userRepositoryPostgres = new UserRepositoryPostgres(pool, {});
 
       await expect(
-        userRepositoryPostgres.verifyAvailableUsername('dicoding')
+        userRepositoryPostgres.verifyAvailableUsername('dicoding'),
       ).rejects.toThrowError(InvariantError);
     });
 
@@ -31,7 +31,7 @@ describe('UserRepositoryPostgres', () => {
       const userRepositoryPostgres = new UserRepositoryPostgres(pool, {});
 
       await expect(
-        userRepositoryPostgres.verifyAvailableUsername('dicoding')
+        userRepositoryPostgres.verifyAvailableUsername('dicoding'),
       ).resolves.not.toThrowError(InvariantError);
     });
   });
@@ -46,7 +46,7 @@ describe('UserRepositoryPostgres', () => {
       const fakeIdGenerator = () => '123';
       const userRepositoryPostgres = new UserRepositoryPostgres(
         pool,
-        fakeIdGenerator
+        fakeIdGenerator,
       );
 
       await userRepositoryPostgres.addUser(registerUser);
@@ -64,7 +64,7 @@ describe('UserRepositoryPostgres', () => {
       const fakeIdGenerator = () => '123';
       const userRepositoryPostgres = new UserRepositoryPostgres(
         pool,
-        fakeIdGenerator
+        fakeIdGenerator,
       );
 
       const registeredUser = await userRepositoryPostgres.addUser(registerUser);
@@ -74,7 +74,7 @@ describe('UserRepositoryPostgres', () => {
           id: 'user-123',
           username: 'dicoding',
           fullname: 'Dicoding Indonesia',
-        })
+        }),
       );
     });
   });
@@ -84,7 +84,7 @@ describe('UserRepositoryPostgres', () => {
       const userRepositoryPostgres = new UserRepositoryPostgres(pool, {});
 
       return expect(
-        userRepositoryPostgres.getPasswordByUsername('dicoding')
+        userRepositoryPostgres.getPasswordByUsername('dicoding'),
       ).rejects.toThrowError(InvariantError);
     });
 
@@ -96,7 +96,7 @@ describe('UserRepositoryPostgres', () => {
       });
 
       const password = await userRepositoryPostgres.getPasswordByUsername(
-        'dicoding'
+        'dicoding',
       );
       expect(password).toBe('secret_password');
     });
@@ -107,7 +107,7 @@ describe('UserRepositoryPostgres', () => {
       const userRepositoryPostgres = new UserRepositoryPostgres(pool, {});
 
       await expect(
-        userRepositoryPostgres.getIdByUsername('dicoding')
+        userRepositoryPostgres.getIdByUsername('dicoding'),
       ).rejects.toThrowError(InvariantError);
     });
 

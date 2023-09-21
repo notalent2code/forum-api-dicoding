@@ -36,10 +36,11 @@ class ThreadCommentRepliesRepositoryPostgres extends ThreadCommentRepliesReposit
 
     if (!rowCount) throw new NotFoundError('balasan tidak ditemukan');
 
-    if (rows[0].owner !== userId)
+    if (rows[0].owner !== userId) {
       throw new AuthorizationError(
-        'anda tidak dapat mengakses balasan orang lain'
+        'anda tidak dapat mengakses balasan orang lain',
       );
+    }
   }
 
   async softDeleteReply(replyId, userId) {

@@ -13,18 +13,17 @@ class GetThreadDetailsUseCase {
 
   async execute(threadId) {
     const thread = await this._threadsRepository.getThreadById(threadId);
-    const rawComments =
-      await this._threadCommentsRepository.getCommentsFromThread(threadId);
+    const rawComments = await this._threadCommentsRepository.getCommentsFromThread(threadId);
 
     const commentIds = rawComments.map((comment) => comment.id);
-    const rawRepliesOfComments =
-      await this._threadCommentRepliesRepository.getRawRepliesFromComments(
-        commentIds
-      );
+    // eslint-disable-next-line max-len
+    const rawRepliesOfComments = await this._threadCommentRepliesRepository.getRawRepliesFromComments(
+      commentIds,
+    );
 
     const comments = rawComments.map((comment) => {
       const rawReplies = rawRepliesOfComments.filter(
-        (reply) => reply.commentId === comment.id
+        (reply) => reply.commentId === comment.id,
       );
       const replies = rawReplies.map((reply) => new Reply(reply));
 

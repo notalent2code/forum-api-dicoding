@@ -37,7 +37,7 @@ describe('AddCommentToThreadUseCase', () => {
     const addedComment = await addCommentToThreadUseCase.execute(
       'thread-123',
       payload,
-      owner
+      owner,
     );
 
     expect(addedComment).toStrictEqual(
@@ -45,14 +45,14 @@ describe('AddCommentToThreadUseCase', () => {
         id: 'comment-123',
         content: 'A comment',
         owner,
-      })
+      }),
     );
 
     expect(mockThreadsRepo.verifyThread).toBeCalledWith('thread-123');
     expect(mockThreadCommentsRepo.addCommentToThread).toBeCalledWith(
       'thread-123',
       new NewComment(payload),
-      owner
+      owner,
     );
   });
 });

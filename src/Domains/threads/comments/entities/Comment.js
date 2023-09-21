@@ -9,25 +9,27 @@ class Comment {
     this.content = args.isDeleted ? '**komentar telah dihapus**' : args.content;
   }
 
-  _verifyArgs({ id, username, date, content, likeCount, isDeleted }) {
+  _verifyArgs({
+    id, username, date, content, likeCount, isDeleted,
+  }) {
     if (
-      !id ||
-      !username ||
-      !date ||
-      !content ||
-      typeof likeCount === 'undefined' ||
-      typeof isDeleted === 'undefined'
+      !id
+      || !username
+      || !date
+      || !content
+      || typeof likeCount === 'undefined'
+      || typeof isDeleted === 'undefined'
     ) {
       throw new Error('COMMENT.NOT_CONTAIN_NEEDED_PROPERTY');
     }
 
     if (
-      typeof id !== 'string' ||
-      typeof username !== 'string' ||
-      !(date instanceof Date) ||
-      typeof content !== 'string' ||
-      typeof likeCount !== 'number' ||
-      typeof isDeleted !== 'boolean'
+      typeof id !== 'string'
+      || typeof username !== 'string'
+      || !(date instanceof Date)
+      || typeof content !== 'string'
+      || typeof likeCount !== 'number'
+      || typeof isDeleted !== 'boolean'
     ) {
       throw new Error('COMMENT.NOT_MEET_DATA_TYPE_SPECIFICATION');
     }

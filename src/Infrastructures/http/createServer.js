@@ -22,13 +22,12 @@ const createServer = async (container) => {
     {
       method: 'GET',
       path: '/',
-      handler: (req, h) =>
-        h
-          .response({
-            status: 'success',
-            message: 'Forum API - Dicoding Submission',
-          })
-          .code(200),
+      handler: (req, h) => h
+        .response({
+          status: 'success',
+          message: 'Forum API - Dicoding Submission',
+        })
+        .code(200),
     },
   ]);
 

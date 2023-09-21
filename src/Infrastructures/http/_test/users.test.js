@@ -19,7 +19,7 @@ describe('/users endpoint', () => {
         password: 'secret',
         fullname: 'Dicoding Indonesia',
       };
-      
+
       const server = await createServer(container);
 
       const response = await server.inject({
@@ -51,7 +51,7 @@ describe('/users endpoint', () => {
       expect(response.statusCode).toEqual(400);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toEqual(
-        'tidak dapat membuat user baru karena properti yang dibutuhkan tidak ada'
+        'tidak dapat membuat user baru karena properti yang dibutuhkan tidak ada',
       );
     });
 
@@ -73,7 +73,7 @@ describe('/users endpoint', () => {
       expect(response.statusCode).toEqual(400);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toEqual(
-        'tidak dapat membuat user baru karena tipe data tidak sesuai'
+        'tidak dapat membuat user baru karena tipe data tidak sesuai',
       );
     });
 
@@ -95,7 +95,7 @@ describe('/users endpoint', () => {
       expect(response.statusCode).toEqual(400);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toEqual(
-        'tidak dapat membuat user baru karena karakter username melebihi batas limit'
+        'tidak dapat membuat user baru karena karakter username melebihi batas limit',
       );
     });
 
@@ -117,7 +117,7 @@ describe('/users endpoint', () => {
       expect(response.statusCode).toEqual(400);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toEqual(
-        'tidak dapat membuat user baru karena username mengandung karakter terlarang'
+        'tidak dapat membuat user baru karena username mengandung karakter terlarang',
       );
     });
 

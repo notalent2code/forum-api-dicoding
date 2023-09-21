@@ -14,7 +14,7 @@ class AddCommentToThreadUseCase {
     return this._threadCommentsRepository.addCommentToThread(
       threadId,
       newComment,
-      owner
+      owner,
     );
   }
 }

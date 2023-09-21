@@ -21,13 +21,13 @@ exports.up = (pgm) => {
   pgm.addConstraint(
     'thread_comments',
     'fk_thread_comments.thread_id_threads.id',
-    'FOREIGN KEY (thread_id) REFERENCES threads (id) ON DELETE CASCADE'
+    'FOREIGN KEY (thread_id) REFERENCES threads (id) ON DELETE CASCADE',
   );
 
   pgm.addConstraint(
     'thread_comments',
     'fk_thread_comments.owner_users.id',
-    'FOREIGN KEY (owner) REFERENCES users (id) ON DELETE CASCADE'
+    'FOREIGN KEY (owner) REFERENCES users (id) ON DELETE CASCADE',
   );
 };
 

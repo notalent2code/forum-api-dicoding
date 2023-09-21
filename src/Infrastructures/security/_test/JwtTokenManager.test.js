@@ -17,7 +17,7 @@ describe('JwtTokenManager', () => {
 
       expect(mockJwtToken.generate).toBeCalledWith(
         payload,
-        process.env.ACCESS_TOKEN_KEY
+        process.env.ACCESS_TOKEN_KEY,
       );
       expect(accessToken).toEqual('mock_token');
     });
@@ -37,7 +37,7 @@ describe('JwtTokenManager', () => {
 
       expect(mockJwtToken.generate).toBeCalledWith(
         payload,
-        process.env.REFRESH_TOKEN_KEY
+        process.env.REFRESH_TOKEN_KEY,
       );
       expect(refreshToken).toEqual('mock_token');
     });
@@ -51,7 +51,7 @@ describe('JwtTokenManager', () => {
       });
 
       await expect(
-        jwtTokenManager.verifyRefreshToken(accessToken)
+        jwtTokenManager.verifyRefreshToken(accessToken),
       ).rejects.toThrow(InvariantError);
     });
 
@@ -62,7 +62,7 @@ describe('JwtTokenManager', () => {
       });
 
       await expect(
-        jwtTokenManager.verifyRefreshToken(refreshToken)
+        jwtTokenManager.verifyRefreshToken(refreshToken),
       ).resolves.not.toThrow(InvariantError);
     });
   });
@@ -74,8 +74,7 @@ describe('JwtTokenManager', () => {
         username: 'dicoding',
       });
 
-      const { username: expectedUsername } =
-        await jwtTokenManager.decodePayload(accessToken);
+      const { username: expectedUsername } = await jwtTokenManager.decodePayload(accessToken);
 
       expect(expectedUsername).toEqual('dicoding');
     });

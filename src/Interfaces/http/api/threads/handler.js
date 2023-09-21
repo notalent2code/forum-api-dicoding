@@ -10,7 +10,7 @@ class ThreadsHandler {
     const { id: userId } = req.auth.credentials;
 
     const addThreadsUseCase = this._container.getInstance(
-      AddThreadsUseCase.name
+      AddThreadsUseCase.name,
     );
 
     const addedThread = await addThreadsUseCase.execute(req.payload, userId);
@@ -28,7 +28,7 @@ class ThreadsHandler {
     const { threadId } = req.params;
 
     const getThreadDetails = this._container.getInstance(
-      GetThreadDetailsUseCase.name
+      GetThreadDetailsUseCase.name,
     );
 
     const thread = await getThreadDetails.execute(threadId);

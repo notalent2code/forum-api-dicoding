@@ -9,7 +9,7 @@ describe('BcryptEncryptionHelper', () => {
       const bcryptEncryptionHelper = new BcryptEncryptionHelper(bcrypt);
 
       const encryptedPassword = await bcryptEncryptionHelper.hash(
-        'plain_password'
+        'plain_password',
       );
 
       expect(typeof encryptedPassword).toEqual('string');
@@ -25,8 +25,8 @@ describe('BcryptEncryptionHelper', () => {
       await expect(
         bcryptEncryptionHelper.comparePassword(
           'plain_password',
-          'encrypted_password'
-        )
+          'encrypted_password',
+        ),
       ).rejects.toThrow(AuthenticationError);
     });
 
@@ -34,11 +34,11 @@ describe('BcryptEncryptionHelper', () => {
       const bcryptEncryptionHelper = new BcryptEncryptionHelper(bcrypt);
       const plainPassword = 'secret';
       const encryptedPassword = await bcryptEncryptionHelper.hash(
-        plainPassword
+        plainPassword,
       );
 
       await expect(
-        bcryptEncryptionHelper.comparePassword(plainPassword, encryptedPassword)
+        bcryptEncryptionHelper.comparePassword(plainPassword, encryptedPassword),
       ).resolves.not.toThrow(AuthenticationError);
     });
   });

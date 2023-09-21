@@ -3,7 +3,7 @@ const Comment = require('../Comment');
 describe('a Comment entity', () => {
   it('should throw error when args did not contain needed property', () => {
     expect(() => new Comment({})).toThrowError(
-      'COMMENT.NOT_CONTAIN_NEEDED_PROPERTY'
+      'COMMENT.NOT_CONTAIN_NEEDED_PROPERTY',
     );
   });
 
@@ -18,7 +18,7 @@ describe('a Comment entity', () => {
     };
 
     expect(() => new Comment(args)).toThrowError(
-      'COMMENT.NOT_MEET_DATA_TYPE_SPECIFICATION'
+      'COMMENT.NOT_MEET_DATA_TYPE_SPECIFICATION',
     );
   });
 

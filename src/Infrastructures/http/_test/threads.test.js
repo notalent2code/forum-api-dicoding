@@ -171,13 +171,13 @@ describe('/threads endpoint', () => {
       expect(response.statusCode).toStrictEqual(200);
       expect(responseJson.status).toStrictEqual('success');
 
-      const thread = responseJson.data.thread;
+      const { thread } = responseJson.data;
 
       expect(thread.id).toStrictEqual('thread-123');
       expect(thread.title).toStrictEqual('sebuah thread');
       expect(thread.body).toStrictEqual('sebuah body thread');
       expect(new Date(thread.date).getDate()).toStrictEqual(
-        new Date().getDate()
+        new Date().getDate(),
       );
       expect(thread.username).toStrictEqual(dummyUser.username);
 
@@ -186,19 +186,19 @@ describe('/threads endpoint', () => {
       expect(dummyUserComment.id).toStrictEqual('comment-123');
       expect(dummyUserComment.username).toStrictEqual(dummyUser.username);
       expect(new Date(dummyUserComment.date).getDate()).toStrictEqual(
-        new Date().getDate()
+        new Date().getDate(),
       );
       expect(dummyUserComment.content).toStrictEqual(
-        `komentar dari ${dummyUser.username}`
+        `komentar dari ${dummyUser.username}`,
       );
 
       expect(dummyUser2Comment.id).toStrictEqual('comment-xyz');
       expect(dummyUser2Comment.username).toStrictEqual(dummyUser2.username);
       expect(new Date(dummyUser2Comment.date).getDate()).toStrictEqual(
-        new Date().getDate()
+        new Date().getDate(),
       );
       expect(dummyUser2Comment.content).toStrictEqual(
-        '**komentar telah dihapus**'
+        '**komentar telah dihapus**',
       );
 
       const [dummyUserReply, dummyUser2Reply] = dummyUserComment.replies;
@@ -206,19 +206,19 @@ describe('/threads endpoint', () => {
       expect(dummyUserReply.id).toStrictEqual('reply-123');
       expect(dummyUserReply.username).toStrictEqual(dummyUser.username);
       expect(new Date(dummyUserReply.date).getDate()).toStrictEqual(
-        new Date().getDate()
+        new Date().getDate(),
       );
       expect(dummyUserReply.content).toStrictEqual(
-        `balasan dari ${dummyUser.username}`
+        `balasan dari ${dummyUser.username}`,
       );
 
       expect(dummyUser2Reply.id).toStrictEqual('reply-xyz');
       expect(dummyUser2Reply.username).toStrictEqual(dummyUser2.username);
       expect(new Date(dummyUser2Reply.date).getDate()).toStrictEqual(
-        new Date().getDate()
+        new Date().getDate(),
       );
       expect(dummyUser2Reply.content).toStrictEqual(
-        '**balasan telah dihapus**'
+        '**balasan telah dihapus**',
       );
     });
   });
@@ -260,7 +260,7 @@ describe('/threads endpoint', () => {
       expect(response.statusCode).toEqual(400);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toEqual(
-        'tipe data pada comment tidak valid'
+        'tipe data pada comment tidak valid',
       );
     });
 
@@ -413,7 +413,7 @@ describe('/threads endpoint', () => {
       expect(response.statusCode).toEqual(403);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toEqual(
-        'anda tidak dapat mengakses komentar orang lain'
+        'anda tidak dapat mengakses komentar orang lain',
       );
     });
 
@@ -519,7 +519,7 @@ describe('/threads endpoint', () => {
       expect(response.statusCode).toEqual(404);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toEqual(
-        'komentar tidak ditemukan pada thread ini'
+        'komentar tidak ditemukan pada thread ini',
       );
     });
 
@@ -551,8 +551,8 @@ describe('/threads endpoint', () => {
       });
       const threadDetailResponseJson = JSON.parse(threadDetailResponse.payload);
 
-      const thread = threadDetailResponseJson.data.thread;
-      const comments = thread.comments;
+      const { thread } = threadDetailResponseJson.data;
+      const { comments } = thread;
 
       expect(comments[0].likeCount).toStrictEqual(1);
     });
@@ -597,7 +597,7 @@ describe('/threads endpoint', () => {
       expect(response.statusCode).toEqual(400);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toEqual(
-        'tipe data pada balasan tidak valid'
+        'tipe data pada balasan tidak valid',
       );
     });
 
@@ -674,7 +674,7 @@ describe('/threads endpoint', () => {
       expect(response.statusCode).toEqual(404);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toEqual(
-        'komentar tidak ditemukan pada thread ini'
+        'komentar tidak ditemukan pada thread ini',
       );
     });
 
@@ -709,8 +709,7 @@ describe('/threads endpoint', () => {
   });
 
   describe('when DELETE /threads/{threadId}/comments/{commentId}/replies/{replyId}', () => {
-    const validTestUrl =
-      '/threads/thread-123/comments/comment-123/replies/reply-123';
+    const validTestUrl = '/threads/thread-123/comments/comment-123/replies/reply-123';
 
     it('should respond 401 status code when the request does not have an authentication', async () => {
       const server = await createServer(container);
@@ -797,7 +796,7 @@ describe('/threads endpoint', () => {
       expect(response.statusCode).toEqual(404);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toEqual(
-        'komentar tidak ditemukan pada thread ini'
+        'komentar tidak ditemukan pada thread ini',
       );
     });
 

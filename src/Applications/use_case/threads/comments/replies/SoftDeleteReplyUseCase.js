@@ -13,7 +13,7 @@ class SoftDeleteReplyUseCase {
     await this._threadsRepository.verifyThread(threadId);
     await this._threadCommentsRepository.verifyCommentLocation(
       commentId,
-      threadId
+      threadId,
     );
 
     await this._threadCommentRepliesRepository.softDeleteReply(replyId, userId);

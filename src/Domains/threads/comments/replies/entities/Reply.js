@@ -8,23 +8,25 @@ class Reply {
     this.content = args.isDeleted ? '**balasan telah dihapus**' : args.content;
   }
 
-  _verifyArgs({ id, username, date, content, isDeleted }) {
+  _verifyArgs({
+    id, username, date, content, isDeleted,
+  }) {
     if (
-      !id ||
-      !username ||
-      !date ||
-      !content ||
-      typeof isDeleted === 'undefined'
+      !id
+      || !username
+      || !date
+      || !content
+      || typeof isDeleted === 'undefined'
     ) {
       throw new Error('COMMENT.NOT_CONTAIN_NEEDED_PROPERTY');
     }
 
     if (
-      typeof id !== 'string' ||
-      typeof username !== 'string' ||
-      !(date instanceof Date) ||
-      typeof content !== 'string' ||
-      typeof isDeleted !== 'boolean'
+      typeof id !== 'string'
+      || typeof username !== 'string'
+      || !(date instanceof Date)
+      || typeof content !== 'string'
+      || typeof isDeleted !== 'boolean'
     ) {
       throw new Error('COMMENT.NOT_MEET_DATA_TYPE_SPECIFICATION');
     }

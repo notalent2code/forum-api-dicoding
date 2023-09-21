@@ -133,8 +133,7 @@ describe('GetThreadDetailsUseCase', () => {
 
     const mockThreadsRepository = new ThreadsRepository();
     const mockThreadCommentsRepository = new ThreadCommentsRepository();
-    const mockThreadCommentRepliesRepository =
-      new ThreadCommentRepliesRepository();
+    const mockThreadCommentRepliesRepository = new ThreadCommentRepliesRepository();
 
     mockThreadsRepository.getThreadById = jest
       .fn()
@@ -157,10 +156,10 @@ describe('GetThreadDetailsUseCase', () => {
     expect(threadDetails).toStrictEqual(expectedThreadDetails);
     expect(mockThreadsRepository.getThreadById).toBeCalledWith(mockPayload);
     expect(mockThreadCommentsRepository.getCommentsFromThread).toBeCalledWith(
-      mockPayload
+      mockPayload,
     );
     expect(
-      mockThreadCommentRepliesRepository.getRawRepliesFromComments
+      mockThreadCommentRepliesRepository.getRawRepliesFromComments,
     ).toBeCalledWith(['comment-123', 'comment-xyz']);
   });
 });

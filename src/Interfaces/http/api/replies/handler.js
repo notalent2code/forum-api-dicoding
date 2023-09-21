@@ -11,14 +11,14 @@ class RepliesHandler {
     const { threadId, commentId } = req.params;
 
     const addReplyToCommentUseCase = this._container.getInstance(
-      AddReplyToCommentUseCase.name
+      AddReplyToCommentUseCase.name,
     );
 
     const addedReply = await addReplyToCommentUseCase.execute(
       threadId,
       commentId,
       req.payload,
-      userId
+      userId,
     );
 
     const response = h.response({
@@ -35,7 +35,7 @@ class RepliesHandler {
     const { threadId, commentId, replyId } = req.params;
 
     const softDeleteReplyUseCase = this._container.getInstance(
-      SoftDeleteReplyUseCase.name
+      SoftDeleteReplyUseCase.name,
     );
 
     await softDeleteReplyUseCase.execute(threadId, commentId, replyId, userId);

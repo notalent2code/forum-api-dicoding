@@ -28,10 +28,10 @@ describe('SoftDeleteCommentUseCase', () => {
     expect(mockThreadsRepo.verifyThread).toBeCalledWith('thread-123');
     expect(mockThreadCommentsRepo.verifyCommentAccess).toBeCalledWith(
       'comment-123',
-      'user-123'
+      'user-123',
     );
     expect(mockThreadCommentsRepo.softDeleteCommentById).toBeCalledWith(
-      'comment-123'
+      'comment-123',
     );
   });
 });

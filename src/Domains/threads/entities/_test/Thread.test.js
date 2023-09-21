@@ -7,7 +7,7 @@ describe('a Thread entity', () => {
     };
 
     expect(() => new Thread(payload)).toThrowError(
-      'THREAD.NOT_CONTAIN_NEEDED_PROPERTY'
+      'THREAD.NOT_CONTAIN_NEEDED_PROPERTY',
     );
   });
 
@@ -21,7 +21,7 @@ describe('a Thread entity', () => {
     };
 
     expect(() => new Thread(payload)).toThrowError(
-      'THREAD.NOT_MEET_DATA_TYPE_SPECIFICATION'
+      'THREAD.NOT_MEET_DATA_TYPE_SPECIFICATION',
     );
   });
 

@@ -5,15 +5,15 @@ describe('ThreadsRepository', () => {
     const threadsRepo = new ThreadsRepository();
 
     await expect(
-      threadsRepo.addThread({ title: '', body: '' }, '')
+      threadsRepo.addThread({ title: '', body: '' }, ''),
     ).rejects.toThrowError('THREADS_REPOSITORY.METHOD_NOT_IMPLEMENTED');
 
     await expect(threadsRepo.getThreadById('')).rejects.toThrowError(
-      'THREADS_REPOSITORY.METHOD_NOT_IMPLEMENTED'
+      'THREADS_REPOSITORY.METHOD_NOT_IMPLEMENTED',
     );
 
     await expect(threadsRepo.verifyThread('')).rejects.toThrowError(
-      'THREADS_REPOSITORY.METHOD_NOT_IMPLEMENTED'
+      'THREADS_REPOSITORY.METHOD_NOT_IMPLEMENTED',
     );
   });
 });

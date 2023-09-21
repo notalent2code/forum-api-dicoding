@@ -7,7 +7,7 @@ describe('UserLogin entities', () => {
     };
 
     expect(() => new UserLogin(payload)).toThrowError(
-      'USER_LOGIN.NOT_CONTAIN_NEEDED_PROPERTY'
+      'USER_LOGIN.NOT_CONTAIN_NEEDED_PROPERTY',
     );
   });
 
@@ -18,7 +18,7 @@ describe('UserLogin entities', () => {
     };
 
     expect(() => new UserLogin(payload)).toThrowError(
-      'USER_LOGIN.NOT_MEET_DATA_TYPE_SPECIFICATION'
+      'USER_LOGIN.NOT_MEET_DATA_TYPE_SPECIFICATION',
     );
   });
 

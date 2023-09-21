@@ -34,12 +34,12 @@ describe('AddThreadUseCase', () => {
         id: 'thread-123',
         title: payload.title,
         owner,
-      })
+      }),
     );
 
     expect(mockThreadsRepository.addThread).toBeCalledWith(
       new NewThread(payload),
-      owner
+      owner,
     );
   });
 });

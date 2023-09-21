@@ -5,13 +5,13 @@ describe('AuthenticationRepository interface', () => {
     const authenticationRepository = new AuthenticationRepository();
 
     await expect(authenticationRepository.addToken('')).rejects.toThrowError(
-      'AUTHENTICATION_REPOSITORY.METHOD_NOT_IMPLEMENTED'
+      'AUTHENTICATION_REPOSITORY.METHOD_NOT_IMPLEMENTED',
     );
     await expect(
-      authenticationRepository.checkAvailabilityToken('')
+      authenticationRepository.checkAvailabilityToken(''),
     ).rejects.toThrowError('AUTHENTICATION_REPOSITORY.METHOD_NOT_IMPLEMENTED');
     await expect(authenticationRepository.deleteToken('')).rejects.toThrowError(
-      'AUTHENTICATION_REPOSITORY.METHOD_NOT_IMPLEMENTED'
+      'AUTHENTICATION_REPOSITORY.METHOD_NOT_IMPLEMENTED',
     );
   });
 });

@@ -50,7 +50,7 @@ describe('ThreadCommentsRepositoryPostgres', () => {
       await repo.addCommentToThread(dummyThread.id, newComment, dummyUser.id);
 
       const comments = await ThreadCommentsTableTestHelper.findCommentById(
-        'comment-123'
+        'comment-123',
       );
 
       expect(comments).toHaveLength(1);
@@ -65,7 +65,7 @@ describe('ThreadCommentsRepositoryPostgres', () => {
       const addedComment = await repo.addCommentToThread(
         dummyThread.id,
         newComment,
-        dummyUser.id
+        dummyUser.id,
       );
 
       expect(addedComment).toStrictEqual(
@@ -73,7 +73,7 @@ describe('ThreadCommentsRepositoryPostgres', () => {
           id: 'comment-123',
           content: newComment.content,
           owner: dummyUser.id,
-        })
+        }),
       );
     });
   });
@@ -83,7 +83,7 @@ describe('ThreadCommentsRepositoryPostgres', () => {
       const repo = new ThreadCommentsRepositoryPostgres(pool, {});
 
       await expect(
-        repo.verifyCommentAccess('comment-123', dummyUser.id)
+        repo.verifyCommentAccess('comment-123', dummyUser.id),
       ).rejects.toThrowError(NotFoundError);
     });
 
@@ -96,7 +96,7 @@ describe('ThreadCommentsRepositoryPostgres', () => {
       });
 
       await expect(
-        repo.verifyCommentAccess('comment-123', dummyUser2.id)
+        repo.verifyCommentAccess('comment-123', dummyUser2.id),
       ).rejects.toThrowError(AuthorizationError);
     });
 
@@ -109,7 +109,7 @@ describe('ThreadCommentsRepositoryPostgres', () => {
       });
 
       await expect(
-        repo.verifyCommentAccess('comment-123', dummyUser.id)
+        repo.verifyCommentAccess('comment-123', dummyUser.id),
       ).resolves.not.toThrowError(ClientError);
     });
   });
@@ -126,7 +126,7 @@ describe('ThreadCommentsRepositoryPostgres', () => {
       await repo.softDeleteCommentById('comment-123');
 
       const [comment] = await ThreadCommentsTableTestHelper.findCommentById(
-        'comment-123'
+        'comment-123',
       );
 
       expect(comment.is_deleted).toEqual(true);
@@ -177,7 +177,7 @@ describe('ThreadCommentsRepositoryPostgres', () => {
       await ThreadCommentsTableTestHelper.softDeleteComment('comment-xyz');
 
       const [comment, deletedComment] = await repo.getCommentsFromThread(
-        dummyThread.id
+        dummyThread.id,
       );
 
       console.log('comment', comment);
@@ -192,7 +192,7 @@ describe('ThreadCommentsRepositoryPostgres', () => {
       expect(deletedComment.id).toStrictEqual('comment-xyz');
       expect(deletedComment.username).toStrictEqual(dummyUser2.username);
       expect(deletedComment.content).toStrictEqual(
-        '**komentar telah dihapus**'
+        '**komentar telah dihapus**',
       );
       expect(deletedComment.date.getDate()).toStrictEqual(new Date().getDate());
       expect(deletedComment.likeCount).toStrictEqual(0);
@@ -204,7 +204,7 @@ describe('ThreadCommentsRepositoryPostgres', () => {
 
     it('should throw NotFoundError if the comment is not found', async () => {
       await expect(
-        repo.verifyCommentLocation('comment-123', dummyThread.id)
+        repo.verifyCommentLocation('comment-123', dummyThread.id),
       ).rejects.toThrowError(new NotFoundError('komentar tidak ditemukan'));
     });
 
@@ -212,9 +212,9 @@ describe('ThreadCommentsRepositoryPostgres', () => {
       await ThreadCommentsTableTestHelper.addCommentToThread({});
 
       await expect(
-        repo.verifyCommentLocation('comment-123', 'thread-xyz')
+        repo.verifyCommentLocation('comment-123', 'thread-xyz'),
       ).rejects.toThrowError(
-        new NotFoundError('komentar tidak ditemukan pada thread ini')
+        new NotFoundError('komentar tidak ditemukan pada thread ini'),
       );
     });
 
@@ -222,7 +222,7 @@ describe('ThreadCommentsRepositoryPostgres', () => {
       await ThreadCommentsTableTestHelper.addCommentToThread({});
 
       await expect(
-        repo.verifyCommentLocation('comment-123', dummyThread.id)
+        repo.verifyCommentLocation('comment-123', dummyThread.id),
       ).resolves.not.toThrowError(NotFoundError);
     });
   });

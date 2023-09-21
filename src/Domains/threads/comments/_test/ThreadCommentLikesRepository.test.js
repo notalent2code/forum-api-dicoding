@@ -5,19 +5,19 @@ describe('ThreadCommentLikesRepository', () => {
     const threadCommentsRepo = new ThreadCommentLikesRepository();
 
     await expect(threadCommentsRepo.likeAComment('', '')).rejects.toThrowError(
-      'THREAD_COMMENT_LIKES_REPOSITORY.METHOD_NOT_IMPLEMENTED'
+      'THREAD_COMMENT_LIKES_REPOSITORY.METHOD_NOT_IMPLEMENTED',
     );
 
     await expect(
-      threadCommentsRepo.dislikeAComment('', '')
+      threadCommentsRepo.dislikeAComment('', ''),
     ).rejects.toThrowError(
-      'THREAD_COMMENT_LIKES_REPOSITORY.METHOD_NOT_IMPLEMENTED'
+      'THREAD_COMMENT_LIKES_REPOSITORY.METHOD_NOT_IMPLEMENTED',
     );
 
     await expect(
-      threadCommentsRepo.verifyCommentLike('', '')
+      threadCommentsRepo.verifyCommentLike('', ''),
     ).rejects.toThrowError(
-      'THREAD_COMMENT_LIKES_REPOSITORY.METHOD_NOT_IMPLEMENTED'
+      'THREAD_COMMENT_LIKES_REPOSITORY.METHOD_NOT_IMPLEMENTED',
     );
   });
 });

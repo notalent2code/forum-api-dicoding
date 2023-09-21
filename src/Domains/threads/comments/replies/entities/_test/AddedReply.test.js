@@ -5,7 +5,7 @@ describe('a AddedReply entities', () => {
     const payload = {};
 
     expect(() => new AddedReply(payload)).toThrowError(
-      'ADDED_COMMENT.NOT_CONTAIN_NEEDED_PROPERTY'
+      'ADDED_COMMENT.NOT_CONTAIN_NEEDED_PROPERTY',
     );
   });
 
@@ -17,7 +17,7 @@ describe('a AddedReply entities', () => {
     };
 
     expect(() => new AddedReply(payload)).toThrowError(
-      'ADDED_COMMENT.NOT_MEET_DATA_TYPE_SPECIFICATION'
+      'ADDED_COMMENT.NOT_MEET_DATA_TYPE_SPECIFICATION',
     );
   });
 

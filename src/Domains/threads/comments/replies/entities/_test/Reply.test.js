@@ -3,7 +3,7 @@ const Reply = require('../Reply');
 describe('a Reply entity', () => {
   it('should throw error when args did not contain needed property', () => {
     expect(() => new Reply({})).toThrowError(
-      'COMMENT.NOT_CONTAIN_NEEDED_PROPERTY'
+      'COMMENT.NOT_CONTAIN_NEEDED_PROPERTY',
     );
   });
 
@@ -17,7 +17,7 @@ describe('a Reply entity', () => {
     };
 
     expect(() => new Reply(args)).toThrowError(
-      'COMMENT.NOT_MEET_DATA_TYPE_SPECIFICATION'
+      'COMMENT.NOT_MEET_DATA_TYPE_SPECIFICATION',
     );
   });
 

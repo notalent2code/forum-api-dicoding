@@ -5,27 +5,27 @@ describe('ThreadCommentRepliesRepository', () => {
     const threadCommentsRepo = new ThreadCommentRepliesRepository();
 
     await expect(
-      threadCommentsRepo.addReplyToComment('', { content: '' }, '')
+      threadCommentsRepo.addReplyToComment('', { content: '' }, ''),
     ).rejects.toThrowError(
-      'THREAD_COMMENT_REPLIES_REPOSITORY.METHOD_NOT_IMPLEMENTED'
+      'THREAD_COMMENT_REPLIES_REPOSITORY.METHOD_NOT_IMPLEMENTED',
     );
 
     await expect(
-      threadCommentsRepo.verifyReplyAccess('', '')
+      threadCommentsRepo.verifyReplyAccess('', ''),
     ).rejects.toThrowError(
-      'THREAD_COMMENT_REPLIES_REPOSITORY.METHOD_NOT_IMPLEMENTED'
+      'THREAD_COMMENT_REPLIES_REPOSITORY.METHOD_NOT_IMPLEMENTED',
     );
 
     await expect(
-      threadCommentsRepo.softDeleteReply('', '')
+      threadCommentsRepo.softDeleteReply('', ''),
     ).rejects.toThrowError(
-      'THREAD_COMMENT_REPLIES_REPOSITORY.METHOD_NOT_IMPLEMENTED'
+      'THREAD_COMMENT_REPLIES_REPOSITORY.METHOD_NOT_IMPLEMENTED',
     );
 
     await expect(
-      threadCommentsRepo.getRawRepliesFromComments([''])
+      threadCommentsRepo.getRawRepliesFromComments(['']),
     ).rejects.toThrowError(
-      'THREAD_COMMENT_REPLIES_REPOSITORY.METHOD_NOT_IMPLEMENTED'
+      'THREAD_COMMENT_REPLIES_REPOSITORY.METHOD_NOT_IMPLEMENTED',
     );
   });
 });

@@ -17,13 +17,13 @@ class AddReplyToCommentUseCase {
     await this._threadsRepository.verifyThread(threadId);
     await this._threadCommentsRepository.verifyCommentLocation(
       commentId,
-      threadId
+      threadId,
     );
 
     return this._threadCommentRepliesRepository.addReplyToComment(
       commentId,
       newReply,
-      owner
+      owner,
     );
   }
 }

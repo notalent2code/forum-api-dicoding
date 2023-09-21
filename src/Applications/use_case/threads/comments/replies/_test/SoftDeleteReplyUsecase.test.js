@@ -31,11 +31,11 @@ describe('SoftDeleteReplyUseCase', () => {
     expect(mockThreadsRepo.verifyThread).toBeCalledWith('thread-123');
     expect(mockThreadCommentsRepo.verifyCommentLocation).toBeCalledWith(
       'comment-123',
-      'thread-123'
+      'thread-123',
     );
     expect(mockThreadCommentRepliesRepo.softDeleteReply).toBeCalledWith(
       'reply-123',
-      'user-123'
+      'user-123',
     );
   });
 });

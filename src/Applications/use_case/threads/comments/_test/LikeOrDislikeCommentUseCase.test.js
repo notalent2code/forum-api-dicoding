@@ -12,20 +12,14 @@ describe('LikeOrDislikeCommentUseCase', () => {
   const mockThreadCommentsRepo = new ThreadCommentsRepository();
 
   mockThreadsRepo.verifyThread = jest.fn(() => Promise.resolve());
-  mockThreadCommentsRepo.verifyCommentLocation = jest.fn(() =>
-    Promise.resolve()
-  );
+  mockThreadCommentsRepo.verifyCommentLocation = jest.fn(() => Promise.resolve());
 
   it('should orchestracting the like comment action correctly', async () => {
     const mockThreadCommentLikesRepo = new ThreadCommentLikesRepository();
 
-    mockThreadCommentLikesRepo.verifyCommentLike = jest.fn(() =>
-      Promise.resolve(false)
-    );
+    mockThreadCommentLikesRepo.verifyCommentLike = jest.fn(() => Promise.resolve(false));
     mockThreadCommentLikesRepo.likeAComment = jest.fn(() => Promise.resolve());
-    mockThreadCommentLikesRepo.dislikeAComment = jest.fn(() =>
-      Promise.resolve()
-    );
+    mockThreadCommentLikesRepo.dislikeAComment = jest.fn(() => Promise.resolve());
 
     const usecase = new LikeOrDislikeCommentUseCase({
       threadsRepository: mockThreadsRepo,
@@ -38,15 +32,15 @@ describe('LikeOrDislikeCommentUseCase', () => {
     expect(mockThreadsRepo.verifyThread).toBeCalledWith(threadId);
     expect(mockThreadCommentsRepo.verifyCommentLocation).toBeCalledWith(
       commentId,
-      threadId
+      threadId,
     );
     expect(mockThreadCommentLikesRepo.verifyCommentLike).toBeCalledWith(
       commentId,
-      userId
+      userId,
     );
     expect(mockThreadCommentLikesRepo.likeAComment).toBeCalledWith(
       commentId,
-      userId
+      userId,
     );
     expect(mockThreadCommentLikesRepo.dislikeAComment).toBeCalledTimes(0);
   });
@@ -54,13 +48,9 @@ describe('LikeOrDislikeCommentUseCase', () => {
   it('should orchestracting the dislike comment action correctly', async () => {
     const mockThreadCommentLikesRepo = new ThreadCommentLikesRepository();
 
-    mockThreadCommentLikesRepo.verifyCommentLike = jest.fn(() =>
-      Promise.resolve(true)
-    );
+    mockThreadCommentLikesRepo.verifyCommentLike = jest.fn(() => Promise.resolve(true));
     mockThreadCommentLikesRepo.likeAComment = jest.fn(() => Promise.resolve());
-    mockThreadCommentLikesRepo.dislikeAComment = jest.fn(() =>
-      Promise.resolve()
-    );
+    mockThreadCommentLikesRepo.dislikeAComment = jest.fn(() => Promise.resolve());
 
     const usecase = new LikeOrDislikeCommentUseCase({
       threadsRepository: mockThreadsRepo,
@@ -73,16 +63,16 @@ describe('LikeOrDislikeCommentUseCase', () => {
     expect(mockThreadsRepo.verifyThread).toBeCalledWith(threadId);
     expect(mockThreadCommentsRepo.verifyCommentLocation).toBeCalledWith(
       commentId,
-      threadId
+      threadId,
     );
     expect(mockThreadCommentLikesRepo.verifyCommentLike).toBeCalledWith(
       commentId,
-      userId
+      userId,
     );
     expect(mockThreadCommentLikesRepo.likeAComment).toBeCalledTimes(0);
     expect(mockThreadCommentLikesRepo.dislikeAComment).toBeCalledWith(
       commentId,
-      userId
+      userId,
     );
   });
 });

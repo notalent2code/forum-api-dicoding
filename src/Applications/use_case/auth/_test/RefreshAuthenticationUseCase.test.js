@@ -8,9 +8,9 @@ describe('RefreshAuthenticationUseCase', () => {
     const refreshAuthenticationUseCase = new RefreshAuthenticationUseCase({});
 
     await expect(
-      refreshAuthenticationUseCase.execute(useCasePayload)
+      refreshAuthenticationUseCase.execute(useCasePayload),
     ).rejects.toThrowError(
-      'REFRESH_AUTHENTICATION_USE_CASE.NOT_CONTAIN_REFRESH_TOKEN'
+      'REFRESH_AUTHENTICATION_USE_CASE.NOT_CONTAIN_REFRESH_TOKEN',
     );
   });
 
@@ -21,9 +21,9 @@ describe('RefreshAuthenticationUseCase', () => {
     const refreshAuthenticationUseCase = new RefreshAuthenticationUseCase({});
 
     await expect(
-      refreshAuthenticationUseCase.execute(useCasePayload)
+      refreshAuthenticationUseCase.execute(useCasePayload),
     ).rejects.toThrowError(
-      'REFRESH_AUTHENTICATION_USE_CASE.PAYLOAD_NOT_MEET_DATA_TYPE_SPECIFICATION'
+      'REFRESH_AUTHENTICATION_USE_CASE.PAYLOAD_NOT_MEET_DATA_TYPE_SPECIFICATION',
     );
   });
 
@@ -42,9 +42,7 @@ describe('RefreshAuthenticationUseCase', () => {
       .mockImplementation(() => Promise.resolve());
     mockAuthenticationTokenManager.decodePayload = jest
       .fn()
-      .mockImplementation(() =>
-        Promise.resolve({ username: 'dicoding', id: 'user-123' })
-      );
+      .mockImplementation(() => Promise.resolve({ username: 'dicoding', id: 'user-123' }));
     mockAuthenticationTokenManager.createAccessToken = jest
       .fn()
       .mockImplementation(() => Promise.resolve('some_new_access_token'));
@@ -55,17 +53,17 @@ describe('RefreshAuthenticationUseCase', () => {
     });
 
     const accessToken = await refreshAuthenticationUseCase.execute(
-      useCasePayload
+      useCasePayload,
     );
 
     expect(mockAuthenticationTokenManager.verifyRefreshToken).toBeCalledWith(
-      useCasePayload.refreshToken
+      useCasePayload.refreshToken,
     );
     expect(mockAuthenticationRepository.checkAvailabilityToken).toBeCalledWith(
-      useCasePayload.refreshToken
+      useCasePayload.refreshToken,
     );
     expect(mockAuthenticationTokenManager.decodePayload).toBeCalledWith(
-      useCasePayload.refreshToken
+      useCasePayload.refreshToken,
     );
     expect(mockAuthenticationTokenManager.createAccessToken).toBeCalledWith({
       username: 'dicoding',

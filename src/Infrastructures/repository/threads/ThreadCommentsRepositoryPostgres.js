@@ -37,10 +37,11 @@ class ThreadCommentsRepositoryPostgres extends ThreadCommentsRepository {
 
     if (!rowCount) throw new NotFoundError('komentar tidak ditemukan');
 
-    if (rows[0].owner !== userId)
+    if (rows[0].owner !== userId) {
       throw new AuthorizationError(
-        'anda tidak dapat mengakses komentar orang lain'
+        'anda tidak dapat mengakses komentar orang lain',
       );
+    }
   }
 
   async softDeleteCommentById(commentId) {
@@ -90,8 +91,7 @@ class ThreadCommentsRepositoryPostgres extends ThreadCommentsRepository {
 
     if (!rowCount) throw new NotFoundError('komentar tidak ditemukan');
 
-    if (rows[0].threadId !== threadId)
-      throw new NotFoundError('komentar tidak ditemukan pada thread ini');
+    if (rows[0].threadId !== threadId) { throw new NotFoundError('komentar tidak ditemukan pada thread ini'); }
   }
 }
 

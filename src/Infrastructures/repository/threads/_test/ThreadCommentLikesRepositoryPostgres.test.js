@@ -46,7 +46,7 @@ describe('ThreadCommentLikesRepositoryPostgres', () => {
       await repo.likeAComment(dummyComment.commentId, dummyUser.id);
 
       const [likeData] = await ThreadCommentLikesTableTestHelper.getCommentLike(
-        'comment-like-123'
+        'comment-like-123',
       );
 
       expect(likeData.commentId).toStrictEqual(dummyComment.commentId);
@@ -58,7 +58,7 @@ describe('ThreadCommentLikesRepositoryPostgres', () => {
     it('should delete like comment data from database', async () => {
       await ThreadCommentLikesTableTestHelper.likeAComment(
         dummyComment.commentId,
-        dummyUser.id
+        dummyUser.id,
       );
 
       const repo = new ThreadCommentLikesRepositoryPostgres(pool, {});
@@ -66,7 +66,7 @@ describe('ThreadCommentLikesRepositoryPostgres', () => {
       await repo.dislikeAComment(dummyComment.commentId, dummyUser.id);
 
       const likeDatas = await ThreadCommentLikesTableTestHelper.getCommentLike(
-        'comment-like-123'
+        'comment-like-123',
       );
 
       expect(likeDatas.length).toStrictEqual(0);
@@ -79,7 +79,7 @@ describe('ThreadCommentLikesRepositoryPostgres', () => {
 
       const isLiked = await repo.verifyCommentLike(
         dummyComment.commentId,
-        dummyUser.id
+        dummyUser.id,
       );
 
       expect(isLiked).toStrictEqual(false);
@@ -88,14 +88,14 @@ describe('ThreadCommentLikesRepositoryPostgres', () => {
     it('should return true if the like comment data exists', async () => {
       await ThreadCommentLikesTableTestHelper.likeAComment(
         dummyComment.commentId,
-        dummyUser.id
+        dummyUser.id,
       );
 
       const repo = new ThreadCommentLikesRepositoryPostgres(pool, {});
 
       const isLiked = await repo.verifyCommentLike(
         dummyComment.commentId,
-        dummyUser.id
+        dummyUser.id,
       );
 
       expect(isLiked).toStrictEqual(true);

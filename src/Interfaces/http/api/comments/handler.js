@@ -11,13 +11,13 @@ class CommentsHandler {
     const { threadId } = req.params;
 
     const addCommentToThreadUseCase = this._container.getInstance(
-      AddCommentToThreadUseCase.name
+      AddCommentToThreadUseCase.name,
     );
 
     const addedComment = await addCommentToThreadUseCase.execute(
       threadId,
       req.payload,
-      userId
+      userId,
     );
 
     const response = h.response({
@@ -34,7 +34,7 @@ class CommentsHandler {
     const { threadId, commentId } = req.params;
 
     const softDeleteCommentUseCase = this._container.getInstance(
-      SoftDeleteCommentUseCase.name
+      SoftDeleteCommentUseCase.name,
     );
 
     await softDeleteCommentUseCase.execute(threadId, commentId, userId);

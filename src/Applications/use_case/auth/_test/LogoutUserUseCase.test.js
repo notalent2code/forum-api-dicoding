@@ -7,9 +7,9 @@ describe('LogoutUserUseCase', () => {
     const logoutUserUseCase = new LogoutUserUseCase({});
 
     await expect(
-      logoutUserUseCase.execute(useCasePayload)
+      logoutUserUseCase.execute(useCasePayload),
     ).rejects.toThrowError(
-      'DELETE_AUTHENTICATION_USE_CASE.NOT_CONTAIN_REFRESH_TOKEN'
+      'DELETE_AUTHENTICATION_USE_CASE.NOT_CONTAIN_REFRESH_TOKEN',
     );
   });
 
@@ -20,9 +20,9 @@ describe('LogoutUserUseCase', () => {
     const logoutUserUseCase = new LogoutUserUseCase({});
 
     await expect(
-      logoutUserUseCase.execute(useCasePayload)
+      logoutUserUseCase.execute(useCasePayload),
     ).rejects.toThrowError(
-      'DELETE_AUTHENTICATION_USE_CASE.PAYLOAD_NOT_MEET_DATA_TYPE_SPECIFICATION'
+      'DELETE_AUTHENTICATION_USE_CASE.PAYLOAD_NOT_MEET_DATA_TYPE_SPECIFICATION',
     );
   });
 
@@ -45,10 +45,10 @@ describe('LogoutUserUseCase', () => {
     await logoutUserUseCase.execute(useCasePayload);
 
     expect(
-      mockAuthenticationRepository.checkAvailabilityToken
+      mockAuthenticationRepository.checkAvailabilityToken,
     ).toHaveBeenCalledWith(useCasePayload.refreshToken);
     expect(mockAuthenticationRepository.deleteToken).toHaveBeenCalledWith(
-      useCasePayload.refreshToken
+      useCasePayload.refreshToken,
     );
   });
 });

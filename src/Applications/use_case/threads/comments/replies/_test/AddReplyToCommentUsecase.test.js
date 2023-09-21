@@ -43,7 +43,7 @@ describe('AddReplyToCommentUseCase', () => {
       'thread-123',
       'comment-123',
       payload,
-      owner
+      owner,
     );
 
     expect(addedReply).toStrictEqual(
@@ -51,18 +51,18 @@ describe('AddReplyToCommentUseCase', () => {
         id: 'reply-123',
         content: payload.content,
         owner,
-      })
+      }),
     );
 
     expect(mockThreadsRepo.verifyThread).toBeCalledWith('thread-123');
     expect(mockThreadCommentsRepo.verifyCommentLocation).toBeCalledWith(
       'comment-123',
-      'thread-123'
+      'thread-123',
     );
     expect(mockThreadCommentRepliesRepo.addReplyToComment).toBeCalledWith(
       'comment-123',
       new NewReply(payload),
-      owner
+      owner,
     );
   });
 });

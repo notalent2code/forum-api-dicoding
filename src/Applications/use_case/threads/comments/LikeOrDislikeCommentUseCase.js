@@ -13,12 +13,12 @@ class LikeOrDislikeCommentUsecase {
     await this._threadsRepository.verifyThread(threadId);
     await this._threadCommentsRepository.verifyCommentLocation(
       commentId,
-      threadId
+      threadId,
     );
 
     const isLiked = await this._threadCommentLikesRepository.verifyCommentLike(
       commentId,
-      liker
+      liker,
     );
 
     if (isLiked) {
