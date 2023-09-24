@@ -14,7 +14,7 @@
     "rules": {
         "no-console": "off",
         "quotes": ["error", "single"],
-        "endOfLine": "off",
+        "linebreak-style": "off",
         "no-underscore-dangle": "off",
         "no-unused-vars": "warn",
         "class-methods-use-this": "off"
