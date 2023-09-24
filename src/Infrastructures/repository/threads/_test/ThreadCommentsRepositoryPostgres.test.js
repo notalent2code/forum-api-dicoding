@@ -180,9 +180,6 @@ describe('ThreadCommentsRepositoryPostgres', () => {
         dummyThread.id,
       );
 
-      console.log('comment', comment);
-      console.log('deletedComment', deletedComment);
-
       expect(comment.id).toStrictEqual('comment-123');
       expect(comment.username).toStrictEqual(dummyUser.username);
       expect(comment.content).toStrictEqual('A comment');
