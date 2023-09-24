@@ -25,7 +25,7 @@ const createServer = async (container) => {
       handler: (req, h) => h
         .response({
           status: 'success',
-          message: 'Forum API - Dicoding Submission',
+          message: 'Forum API - Dicoding Submission AWS',
         })
         .code(200),
     },
