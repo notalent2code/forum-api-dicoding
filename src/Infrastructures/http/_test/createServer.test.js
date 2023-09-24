@@ -35,7 +35,7 @@ describe('HTTP server', () => {
 
   it('when request "GET /", should get response with status and message', async () => {
     const expectedResponse = {
-      status: 'failed',
+      status: 'success',
       message: 'Forum API - Dicoding Submission',
     };
 
